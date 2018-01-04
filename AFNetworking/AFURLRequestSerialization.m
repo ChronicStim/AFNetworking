@@ -1189,7 +1189,7 @@ typedef enum {
 
 - (BOOL)transitionToNextPhase {
     if (![[NSThread currentThread] isMainThread]) {
-        dispatch_sync(dispatch_get_main_queue(), ^{
+        runOnMainQueueWithoutDeadlocking(^{
             [self transitionToNextPhase];
         });
         return YES;
